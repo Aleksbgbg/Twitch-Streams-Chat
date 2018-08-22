@@ -17,7 +17,19 @@
                 {
                     RegisterStream registerStream = new RegisterStream();
 
-                    registerStream.StreamRegistered += (sender, e) => webSocketServer.AddWebSocketService<StreamChat>($"/StreamChat/{e.StreamId}");
+                    registerStream.StreamRegistered += (sender, e) =>
+                    {
+                        StreamChat StreamChatFactory()
+                        {
+                            StreamChat streamChat = new StreamChat();
+
+                            streamChat.ServiceClosed += (sender2, _) => webSocketServer.RemoveWebSocketService($"/StreamChat/{e.StreamId}");
+
+                            return streamChat;
+                        }
+
+                        webSocketServer.AddWebSocketService($"/StreamChat/{e.StreamId}", StreamChatFactory);
+                    };
 
                     return registerStream;
                 }
