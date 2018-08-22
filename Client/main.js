@@ -26,6 +26,20 @@ class UserConnection {
     }
 }
 
+const streamsIds = [];
+
+const registerStream = (function() {
+    const registerStreamSocket = new WebSocket(getServerPath("RegisterStream"));
+
+    registerStreamSocket.onmessage = function(event) {
+        streamsIds.push(event.data);
+    };
+
+    return function(id) {
+        registerStreamSocket.send(id);
+    };
+})();
+
 connection = new UserConnection("User", function(event) {
     console.log(event.data);
 });
