@@ -1,7 +1,20 @@
+const config = {
+    serverIp: "81.107.155.88",
+    serverPort: 3001
+};
+
+function getServerAddress() {
+    return `ws://${config.serverIp}:${config.serverPort}`;
+}
+
+function getServerPath(pathname) {
+    return `${getServerAddress()}/${pathname}`;
+}
+
 class UserConnection {
     constructor(name, onMessage) {
         this.name = name;
-        this.serverSocket = new WebSocket("ws://81.107.155.88:3001/StreamChat");
+        this.serverSocket = new WebSocket(getServerPath("StreamChat"));
         this.serverSocket.onmessage = onMessage;
     }
 
