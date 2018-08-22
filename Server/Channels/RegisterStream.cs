@@ -14,6 +14,7 @@
         protected override void OnMessage(MessageEventArgs e)
         {
             StreamRegistered?.Invoke(this, new StreamRegisteredEventArgs(e.Data));
+            Sessions.Broadcast(e.Data);
         }
     }
 }
