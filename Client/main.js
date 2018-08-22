@@ -12,9 +12,9 @@ function getServerPath(pathname) {
 }
 
 class UserConnection {
-    constructor(name, onMessage) {
+    constructor(name, streamId, onMessage) {
         this.name = name;
-        this.serverSocket = new WebSocket(getServerPath("StreamChat"));
+        this.serverSocket = new WebSocket(getServerPath(`StreamChat/${streamId}`));
         this.serverSocket.onmessage = onMessage;
     }
 
@@ -40,6 +40,14 @@ const registerStream = (function() {
     };
 })();
 
-connection = new UserConnection("User", function(event) {
-    console.log(event.data);
-});
+const streamId = "TEST_STREAM";
+
+setTimeout(function() {
+    registerStream(streamId);
+
+   setTimeout(function() {
+       window.connection = new UserConnection("User", streamId, function(event) {
+           console.log(event.data);
+       });
+   }, 250);
+}, 250);
