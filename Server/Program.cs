@@ -11,7 +11,19 @@
         private static void Main()
         {
             WebSocketServer webSocketServer = new WebSocketServer(Constants.Port);
-            webSocketServer.AddWebSocketService<StreamChat>("/StreamChat");
+
+            {
+                RegisterStream RegisterStreamFactory()
+                {
+                    RegisterStream registerStream = new RegisterStream();
+
+                    registerStream.StreamRegistered += (sender, e) => webSocketServer.AddWebSocketService<StreamChat>($"/StreamChat/{e.StreamId}");
+
+                    return registerStream;
+                }
+
+                webSocketServer.AddWebSocketService("/RegisterStream", RegisterStreamFactory);
+            }
 
             webSocketServer.Start();
 
