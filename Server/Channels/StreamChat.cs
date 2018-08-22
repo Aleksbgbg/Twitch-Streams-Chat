@@ -23,7 +23,10 @@
 
         protected override void OnClose(CloseEventArgs e)
         {
-            OnServiceClosed();
+            if (Sessions.Count == 0)
+            {
+                OnServiceClosed();
+            }
         }
 
         protected override void OnError(ErrorEventArgs e)
