@@ -2,6 +2,6 @@
 {
     internal static class Constants
     {
-        internal const int Port = 8001;
+        internal const int Port = 3001;
     }
 }
