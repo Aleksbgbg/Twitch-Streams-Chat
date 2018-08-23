@@ -50,6 +50,7 @@
     <Compile Include="Channels\StreamChat.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="EventArgs\StreamRegisteredEventArgs.cs" />
+    <Compile Include="Models\ChatTransmission.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\OpCode.cs" />
     <Compile Include="Program.cs" />
