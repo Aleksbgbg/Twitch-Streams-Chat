@@ -2,8 +2,7 @@
 {
     internal enum OpCode
     {
-        UserJoined,
-        UserLeft,
+        UserCount,
         Message
     }
 }
