@@ -13,7 +13,7 @@
     {
         protected override void OnOpen()
         {
-            base.OnOpen();
+            UpdateUserCount();
         }
 
         protected override void OnMessage(MessageEventArgs e)
@@ -26,7 +26,12 @@
 
         protected override void OnClose(CloseEventArgs e)
         {
-            base.OnClose(e);
+            UpdateUserCount();
+        }
+
+        private void UpdateUserCount()
+        {
+            Sessions.Broadcast(Sessions.Count.ToString());
         }
     }
 }
