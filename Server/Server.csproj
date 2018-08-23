@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Channels\PersonalChat.cs" />
     <Compile Include="Channels\RegisterStream.cs" />
     <Compile Include="Channels\StreamChat.cs" />
     <Compile Include="Constants.cs" />
